@@ -1,5 +1,5 @@
 const screenHeight = document.body.clientHeight;
-let SQ_NUM = 669;
+let SQ_NUM = 405;
 
 // if (screenHeight === 629) {
 //   SQ_NUM = 375;
