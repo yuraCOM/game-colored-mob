@@ -1,11 +1,16 @@
-const screenHeight = document.body.clientHeight;
-let SQ_NUM = 405;
+let SQ_NUM = 375;
+// let SQ_NUM = 405;
 
-// if (screenHeight === 629) {
-//   SQ_NUM = 375;
-// } else if (screenHeight === 669) {
-//   SQ_NUM = 405;
-// }
+window.onload = () => {
+  if (screenHeight === 629) {
+    SQ_NUM = 375;
+    console.log(375);
+  } else if (screenHeight === 669) {
+    SQ_NUM = 405;
+    console.log(405);
+  }
+};
+const screenHeight = document.documentElement.clientHeight;
 
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
