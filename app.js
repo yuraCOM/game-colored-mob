@@ -1,4 +1,4 @@
-const screenHeight = window.screen.height;
+const screenHeight = document.body.clientHeight;
 let SQ_NUM;
 
 if (screenHeight === 629) {
