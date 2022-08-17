@@ -6,7 +6,7 @@ const setRandomColors = document.querySelector("#setRandomColors");
 let color = "#1612e2";
 let trueRandom = true;
 
-const SQ_NUM = 544;
+const SQ_NUM = 416;
 
 clearBtn?.addEventListener("click", clearBoard);
 
