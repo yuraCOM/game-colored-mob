@@ -1,4 +1,3 @@
-const body = document.querySelector("body");
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
 const setColorBtn = document.querySelector("#setColor");
@@ -7,14 +6,9 @@ const setRandomColors = document.querySelector("#setRandomColors");
 let color = "#1612e2";
 let trueRandom = true;
 
-const SQ_NUM = 522;
+const SQ_NUM = 432;
 
 clearBtn?.addEventListener("click", clearBoard);
-
-body?.addEventListener("touchstart", (ev) => {
-  ev.preventDefault();
-  ev.stopImmediatePropagation();
-});
 
 setColorBtn.onchange = () => console.log((color = setColorBtn.value));
 
@@ -60,7 +54,7 @@ function setColor(element) {
   if (trueRandom) {
     let color = randcolor();
     element.style.backgroundColor = color;
-    element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
+    // element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
   } else {
     element.style.backgroundColor = color;
     element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
@@ -100,7 +94,6 @@ function randcolor() {
   return "#" + colors;
 }
 function clearBoard() {
-  console.log("clear");
   document.querySelectorAll(".sq").forEach((item) => {
     item.style.backgroundColor = "#1d1d1d";
     item.style.boxShadow = `0 0 2px #000`;
@@ -113,7 +106,6 @@ function toggleRandomColor() {
     setRandomColors.innerHTML = "Off-RandColors";
     setRandomColors.style.backgroundColor = "grey";
     setColorBtn.style.opacity = 1;
-    console.log("false");
   } else {
     trueRandom = true;
     setRandomColors.innerHTML = "On-RandColors";
