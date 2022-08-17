@@ -1,3 +1,12 @@
+const screenHeight = window.screen.height;
+let SQ_NUM;
+
+if (screenHeight === 629) {
+  SQ_NUM = 375;
+} else if (screenHeight === 669) {
+  SQ_NUM = 405;
+}
+
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
 const setColorBtn = document.querySelector("#setColor");
@@ -5,8 +14,6 @@ const setRandomColors = document.querySelector("#setRandomColors");
 
 let color = "#1612e2";
 let trueRandom = true;
-
-const SQ_NUM = 405;
 
 clearBtn?.addEventListener("click", clearBoard);
 
