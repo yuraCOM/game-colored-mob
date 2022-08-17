@@ -9,15 +9,19 @@ if (screenHeight === 629) {
 
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
+const eraser = document.querySelector(".eraser");
 const setColorBtn = document.querySelector("#setColor");
 const setRandomColors = document.querySelector("#setRandomColors");
 
 let color = "#1612e2";
 let trueRandom = true;
+let eraserToogle = false;
 
 clearBtn?.addEventListener("click", clearBoard);
 
-setColorBtn.onchange = () => console.log((color = setColorBtn.value));
+eraser.addEventListener("click", onRase);
+
+setColorBtn.onchange = () => (color = setColorBtn.value);
 
 trueRandom ? (setColorBtn.style.opasity = "0") : false;
 
@@ -46,10 +50,13 @@ for (let index = 0; index < SQ_NUM; index++) {
 }
 
 function setColor(element) {
-  if (trueRandom) {
+  if (eraserToogle) {
+    element.style.backgroundColor = "#1d1d1d";
+    element.style.boxShadow = `0 0 2px #000`;
+  } else if (trueRandom) {
     let color = randcolor();
     element.style.backgroundColor = color;
-    // element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
+    element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
   } else {
     element.style.backgroundColor = color;
     element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
@@ -88,6 +95,34 @@ function randcolor() {
   }
   return "#" + colors;
 }
+
+function onRase() {
+  !trueRandom ? (trueRandom = false) : (trueRandom = true);
+
+  eraserToogle
+    ? (setColorBtn.style.opacity = 1)
+    : setColorBtn.style.opacity === 0;
+
+  if (!eraserToogle) {
+    eraser.style.backgroundColor = "red";
+    eraserToogle = true;
+    setRandomColors.style.opacity = 0;
+    setRandomColors.disabled = true;
+    setColorBtn.disabled = true;
+    !trueRandom ? (setColorBtn.style.opacity = 0) : false;
+
+    // setColorBtn.style.opacity = 0;
+  } else if (eraserToogle) {
+    eraser.style.backgroundColor = "";
+    eraserToogle = false;
+    // !trueRandom ? (trueRandom = false) : (trueRandom = true);
+    setRandomColors.style.opacity = 1;
+    trueRandom ? (setColorBtn.style.opacity = 0) : false;
+    setRandomColors.disabled = false;
+    setColorBtn.disabled = false;
+  }
+}
+
 function clearBoard() {
   document.querySelectorAll(".sq").forEach((item) => {
     item.style.backgroundColor = "#1d1d1d";
