@@ -6,7 +6,7 @@ const setRandomColors = document.querySelector("#setRandomColors");
 let color = "#1612e2";
 let trueRandom = true;
 
-const SQ_NUM = 432;
+const SQ_NUM = 405;
 
 clearBtn?.addEventListener("click", clearBoard);
 
@@ -23,18 +23,6 @@ for (let index = 0; index < SQ_NUM; index++) {
   square.addEventListener("mouseover", () => {
     setColor(square);
   });
-
-  // touch
-  // square.addEventListener("touchstart", (event) => {
-  //   console.log(event);
-  //   console.log("touchstart");
-  //   setColor(square);
-  // });
-
-  // square.addEventListener("touchmove ", (event) => {
-  //   console.log("touchmove", event);
-  //   // setColor(square);
-  // });
 
   square.addEventListener("touchmove", (event) => {
     // get coordinates depending on pointer type:
