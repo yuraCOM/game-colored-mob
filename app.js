@@ -11,10 +11,10 @@ const SQ_NUM = 522;
 
 clearBtn?.addEventListener("click", clearBoard);
 
-// body?.addEventListener("touchstart", (ev) => {
-//   ev.preventDefault();
-//   ev.stopImmediatePropagation();
-// });
+body?.addEventListener("touchstart", (ev) => {
+  ev.preventDefault();
+  ev.stopImmediatePropagation();
+});
 
 setColorBtn.onchange = () => console.log((color = setColorBtn.value));
 
