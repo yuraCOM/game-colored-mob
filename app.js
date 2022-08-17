@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
 const setColorBtn = document.querySelector("#setColor");
@@ -6,9 +7,14 @@ const setRandomColors = document.querySelector("#setRandomColors");
 let color = "#1612e2";
 let trueRandom = true;
 
-const SQ_NUM = 792;
+const SQ_NUM = 522;
 
 clearBtn?.addEventListener("click", clearBoard);
+
+// body?.addEventListener("touchstart", (ev) => {
+//   ev.preventDefault();
+//   ev.stopImmediatePropagation();
+// });
 
 setColorBtn.onchange = () => console.log((color = setColorBtn.value));
 
