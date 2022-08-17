@@ -18,6 +18,12 @@ body {
   flex-direction: column
 }
 
+.wrapper-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -32,9 +38,17 @@ body {
   background-color: #1d1d1d;
   margin: 2px;
   box-shadow: 0 0 0.2px #000;
-  transition: 1.5s ease;
+  transition: 500ms ease;
 }
 
 .sq:hover {
   transition-duration: 0s;
+}
+
+#setColor {
+  opacity: 0;
+}
+
+#setRandomColors {
+  background-color: limegreen;
 }

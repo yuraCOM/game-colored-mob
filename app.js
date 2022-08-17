@@ -1,11 +1,20 @@
 const board = document.querySelector("#board");
 const clearBtn = document.querySelector(".clear");
+const setColorBtn = document.querySelector("#setColor");
+const setRandomColors = document.querySelector("#setRandomColors");
 
-let colors = [];
+let color = "#1612e2";
+let trueRandom = true;
 
-const SQ_NUM = 384;
+const SQ_NUM = 544;
 
-clearBtn?.addEventListener('click', clearBoard)
+clearBtn?.addEventListener("click", clearBoard);
+
+setColorBtn.onchange = () => console.log((color = setColorBtn.value));
+
+trueRandom ? (setColorBtn.style.opasity = "0") : false;
+
+setRandomColors.addEventListener("click", toggleRandomColor);
 
 for (let index = 0; index < SQ_NUM; index++) {
   const square = document.createElement("div");
@@ -15,31 +24,41 @@ for (let index = 0; index < SQ_NUM; index++) {
     setColor(square);
   });
 
-  square.addEventListener("touchstart", () => {
-    console.log("touchstart");
-    setColor(square);
-  });
-
-  // square.addEventListener("touchmove", () => {
-
-  //   console.log("touchmove");
-  //   console.log(square);
+  // touch
+  // square.addEventListener("touchstart", (event) => {
+  //   console.log(event);
+  //   console.log("touchstart");
   //   setColor(square);
   // });
 
-
-
-  // square.addEventListener("mouseleave", () => {
-  //   removeColor(square);
+  // square.addEventListener("touchmove ", (event) => {
+  //   console.log("touchmove", event);
+  //   // setColor(square);
   // });
 
+  square.addEventListener("touchmove", (event) => {
+    // get coordinates depending on pointer type:
+    var xcoord = event.touches ? event.touches[0].pageX : event.pageX;
+    var ycoord = event.touches ? event.touches[0].pageY : event.pageY;
+    // get element in coordinates:
+    var targetElement = document.elementFromPoint(xcoord, ycoord);
+    // validate if this is a valid element for our case:
+    if (targetElement && targetElement.classList.contains("sq")) {
+      setColor(targetElement);
+    }
+  });
   board?.append(square);
 }
 
 function setColor(element) {
-  let color = randcolor();
-  element.style.backgroundColor = "#" + color;
-  element.style.boxShadow = `0 0 2px #${color}, 0 0 10px #${color}`;
+  if (trueRandom) {
+    let color = randcolor();
+    element.style.backgroundColor = color;
+    element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
+  } else {
+    element.style.backgroundColor = color;
+    element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
+  }
 }
 
 function removeColor(element) {
@@ -72,15 +91,28 @@ function randcolor() {
     let numb = Math.floor(Math.random() * 15);
     colors += rflags[numb];
   }
-  return colors;
+  return "#" + colors;
 }
 function clearBoard() {
-  console.log('clear');
-  document.querySelectorAll(".sq").forEach(item => {
+  console.log("clear");
+  document.querySelectorAll(".sq").forEach((item) => {
     item.style.backgroundColor = "#1d1d1d";
     item.style.boxShadow = `0 0 2px #000`;
-  })
+  });
 }
 
+function toggleRandomColor() {
+  if (trueRandom) {
+    trueRandom = false;
+    setRandomColors.innerHTML = "Off-RandColors";
+    setRandomColors.style.backgroundColor = "grey";
+    setColorBtn.style.opacity = 1;
+    console.log("false");
+  } else {
+    trueRandom = true;
+    setRandomColors.innerHTML = "On-RandColors";
+    setRandomColors.style.backgroundColor = "limegreen";
 
-
+    setColorBtn.style.opacity = 0;
+  }
+}
